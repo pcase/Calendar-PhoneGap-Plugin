@@ -41,12 +41,11 @@ public class Calendar extends CordovaPlugin {
     // TODO this plugin may work fine on 3.0 devices, but have not tested it yet, so to be sure:
     final boolean hasLimitedSupport = Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH;
     if (ACTION_CREATE_EVENT.equals(action) || ACTION_CREATE_EVENT_WITH_OPTIONS.equals(action)) {
-//       if (hasLimitedSupport) {
-//         // TODO investigate this option some day: http://stackoverflow.com/questions/3721963/how-to-add-calendar-events-in-android
-//         return createEventInteractively(args);
-//       } else {
-//         return createEvent(args);
-		return createEvent(args);
+      if (hasLimitedSupport) {
+        // TODO investigate this option some day: http://stackoverflow.com/questions/3721963/how-to-add-calendar-events-in-android
+        return createEventInteractively(args);
+      } else {
+        return createEvent(args);
       }
     } else if (ACTION_CREATE_EVENT_INTERACTIVELY.equals(action)) {
       return createEventInteractively(args);
