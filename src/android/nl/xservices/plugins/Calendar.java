@@ -47,7 +47,8 @@ public class Calendar extends CordovaPlugin {
 //       } else {
 //         return createEvent(args);
 //       }
-		return createEvent(args);
+// 		return createEvent(args);
+		return createEventInteractively(args);
     } else if (ACTION_CREATE_EVENT_INTERACTIVELY.equals(action)) {
       return createEventInteractively(args);
     } else if (ACTION_LIST_EVENTS_IN_RANGE.equals(action)) {
