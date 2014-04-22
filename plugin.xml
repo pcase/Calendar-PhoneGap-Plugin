@@ -42,8 +42,8 @@
          </feature>
       </config-file>
      <config-file target="AndroidManifest.xml" parent="/manifest">
-<!--       <uses-permission android:name="android.permission.READ_CALENDAR"/>   -->
-<!--       <uses-permission android:name="android.permission.WRITE_CALENDAR"/>  -->
+		<uses-permission android:name="android.permission.READ_CALENDAR"/>   
+		<uses-permission android:name="android.permission.WRITE_CALENDAR"/>  
      </config-file>
       <source-file src="src/android/nl/xservices/plugins/Calendar.java" target-dir="src/nl/xservices/plugins" />
       <source-file src="src/android/nl/xservices/plugins/accessor/AbstractCalendarAccessor.java" target-dir="src/nl/xservices/plugins/accessor" />
