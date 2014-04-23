@@ -37,6 +37,15 @@
     }
 }
 
+- (void) showEnableCalendarAccessDialog {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Access to the calendar is disabled"
+                                                    message:@"Please go to Settings->Privacy->Calendars to allow access to the calendar"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 #pragma mark Helper Functions
 
 - (void)createEventWithCalendar:(CDVInvokedUrlCommand*)command
@@ -79,6 +88,10 @@
     [self.eventStore saveEvent:myEvent span:EKSpanThisEvent error:&error];
     
     if (error) {
+        if ([error.userInfo.description rangeOfString:@"No calendar has been set"].location != NSNotFound) {
+            [self showEnableCalendarAccessDialog];
+        }
+        
         CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.userInfo.description];
         [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
     } else {
@@ -132,6 +145,10 @@
     [self.eventStore saveEvent:myEvent span:EKSpanThisEvent error:&error];
     
     if (error) {
+        if ([error.userInfo.description rangeOfString:@"No calendar has been set"].location != NSNotFound) {
+            [self showEnableCalendarAccessDialog];
+        }
+        
         CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.userInfo.description];
         [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
     } else {
